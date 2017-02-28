@@ -42,6 +42,7 @@ public class Project {
 	@Column(name = "project_end_date")
 	@Temporal(TemporalType.DATE)
 	Date endDate;
+	@Transient
 	int noOfSeats;
 
 	public Project() {
