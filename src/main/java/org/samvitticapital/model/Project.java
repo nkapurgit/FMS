@@ -2,39 +2,50 @@ package org.samvitticapital.model;
 
 import java.util.Date;
 
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
-@Table(name="tbl_project")
-public class Project 
-{
+@Table(name = "tbl_project")
+
+public class Project {
 	@Id
-	@Column(name="project_id")
-	private int projectId;
-	
-	@Column(name="project_name")
-	private String projectName;
-	
-	@Column(name="project_manager_id")
-	private int managerId;
-	
-	@Column(name="project_director_id")
-	private int directorId;
-	
-	@Column(name="project_start_date")
-	private Date startDate;
-	
-	@Column(name="project_end_date")
-	private Date endDate;
-	
-	public Project(){
-		
+	@GeneratedValue
+	@Column(name = "project_id")
+	int projectId;
+	@Column(name = "project_name")
+	String projectName;
+	@Column(name = "project_manager_id")
+	int managerId;
+	String managerName;
+	@Column(name = "project_director_id")
+	int directorId;
+	String directorName;
+	@Column(name = "project_start_date")
+	@Temporal(TemporalType.DATE)
+	Date startDate;
+	@Column(name = "project_end_date")
+	@Temporal(TemporalType.DATE)
+	Date endDate;
+	int noOfSeats;
+
+	public Project() {
+
 	}
-	
-	public Project(int projectId){
+
+	public Project(int projectId) {
 		this.projectId = projectId;
 	}
 
@@ -85,7 +96,29 @@ public class Project
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	
-	
-			
+
+	public String getManagerName() {
+		return managerName;
+	}
+
+	public void setManagerName(String managerName) {
+		this.managerName = managerName;
+	}
+
+	public String getDirectorName() {
+		return directorName;
+	}
+
+	public void setDirectorName(String directorName) {
+		this.directorName = directorName;
+	}
+
+	public int getNoOfSeats() {
+		return noOfSeats;
+	}
+
+	public void setNoOfSeats(int noOfSeats) {
+		this.noOfSeats = noOfSeats;
+	}
+
 }

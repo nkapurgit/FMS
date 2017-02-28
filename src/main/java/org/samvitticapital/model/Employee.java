@@ -1,42 +1,47 @@
 package org.samvitticapital.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-
 @Component
 @Entity
+@Table(name = "tbl_employee")
 public class Employee {
-	
+
 	@Id
-	String name;
-	int age;
-	String address;
-	public String getName() {
-		return name;
+	@Column(name = "employee_id")
+	int employeeId;
+	@Column(name = "employee_name")
+	String employeeName;
+	@Column(name = "employee_email")
+	String employeeEmail;
+
+	public int getEmployeeId() {
+		return employeeId;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
 	}
-	public int getAge() {
-		return age;
+
+	public String getEmployeeName() {
+		return employeeName;
 	}
-	public void setAge(int age) {
-		this.age = age;
+
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
-	public String getAddress() {
-		return address;
+
+	public String getEmployeeEmail() {
+		return employeeEmail;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+
+	public void setEmployeeEmail(String employeeEmail) {
+		this.employeeEmail = employeeEmail;
 	}
-	
-	
-	
-	
-	
-	
 
 }
