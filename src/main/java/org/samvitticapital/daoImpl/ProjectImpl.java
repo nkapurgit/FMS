@@ -55,9 +55,12 @@ public class ProjectImpl implements ProjectDao {
 		List<Object[]> projList = (List<Object[]>) query.list();
 		for (Object[] arr : projList) {
 			Project p = new Project();
+			Integer projID = (Integer) arr[0];
+			if(null!=projID && projID.compareTo(new Integer(0))!=0){
 			p.setProjectId((Integer) arr[0]);
 			p.setProjectName((String) arr[1]);
 			resultList.getProjectList().add(p);
+			}
 		}
 
 		return resultList;
