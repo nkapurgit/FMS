@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
@@ -29,9 +30,11 @@ public class Project {
 	String projectName;
 	@Column(name = "project_manager_id")
 	int managerId;
+	@Transient
 	String managerName;
 	@Column(name = "project_director_id")
 	int directorId;
+	@Transient
 	String directorName;
 	@Column(name = "project_start_date")
 	@Temporal(TemporalType.DATE)
