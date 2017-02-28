@@ -1,22 +1,15 @@
 package org.samvitticapital.restcontroller;
 
-import java.util.ArrayList;
 import java.util.Date;
 
-import org.samvitticapital.Dao.EmployeDao;
 import org.samvitticapital.Dao.ProjectDao;
 import org.samvitticapital.model.Employee;
 import org.samvitticapital.model.Project;
-import org.samvitticapital.model.Request;
-import org.samvitticapital.vo.BayReq;
 import org.samvitticapital.vo.GenericResponse;
-import org.samvitticapital.vo.ProjectReq;
 import org.samvitticapital.vo.Projects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
