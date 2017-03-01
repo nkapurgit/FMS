@@ -10,11 +10,16 @@ import org.samvitticapital.model.Project;
 import org.samvitticapital.model.Request;
 import org.samvitticapital.model.RequestList;
 import org.samvitticapital.vo.GenericResponse;
+import org.samvitticapital.vo.LayOutReq;
+import org.samvitticapital.vo.RequestParamBody;
 import org.samvitticapital.vo.Requests;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,24 +31,19 @@ public class RequestController {
 	@Autowired
 	private Request request;
 
-	@RequestMapping("/newRequest")
-	public ResponseEntity<GenericResponse> saveNewRequest(
-			@RequestParam(value = "projectId", required = true) int projectId,
-			@RequestParam(value = "typeOfRequest", required = true) String typeOfRequest,
-			@RequestParam(value = "noOfSeats", required = true) int noOfSeats,
-			@RequestParam(value = "preferredBay", required = true) String preferredBay,
-			@RequestParam(value = "leadershipApprvl", required = true) String leadershipApprvl,
-			@RequestParam(value = "requestComment", required = false) String requestComment) {
+	@RequestMapping(value = "/newRequest", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<GenericResponse> saveNewRequest(@RequestBody RequestParamBody req) {
 		try {
-			System.out.println("projectId - "+projectId);
+			System.out.println("project id - "+req.getProjectId());
+			int projectId = req.getProjectId();
 			Project p = requestDao.getProject(projectId);
 			request.setProject(p);
-			request.setTypeOfRequest(typeOfRequest);
+			request.setTypeOfRequest(req.getTypeOfRequest());
 			request.setRequestStatus("PENDING");
-			request.setNoOfSeats(noOfSeats);
-			request.setPreferredBay(preferredBay);
-			request.setLeadershipApprvl(leadershipApprvl);
-			request.setRequestComment(requestComment);
+			request.setNoOfSeats(req.getNoOfSeats());
+			request.setPreferredBay(req.getPreferredBay());
+			request.setLeadershipApprvl(req.getLeadershipApprvl());
+			request.setRequestComment(req.getRequestComment());
 
 			requestDao.save(request);
 			int newRequestId = request.getRequestId();
