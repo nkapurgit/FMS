@@ -35,8 +35,8 @@ public class EmployeeImpl implements EmployeDao{
 	 }
 	 
 	 @Override
-	public Employee get(String name) {
-		Employee emp = (Employee)getCurrentsession().get(Employee.class,name);
+	public Employee get(int empId) {
+		Employee emp = (Employee)getCurrentsession().get(Employee.class,empId);
 		return emp;
 	}
 

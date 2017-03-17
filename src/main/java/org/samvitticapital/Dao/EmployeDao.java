@@ -9,6 +9,6 @@ public interface EmployeDao {
 	
 	public Session getCurrentsession();
 	public void save(Employee emp);
-	public Employee get(String name);
+	public Employee get(int empId);
 
 }
